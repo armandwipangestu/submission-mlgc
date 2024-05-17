@@ -1,10 +1,13 @@
-const express = require('express')
-const upload = require('../../middleware/image.middleware')
-const { predict } = require('../../controller/predicts.controller')
+const express = require("express");
+const upload = require("../../middleware/image.middleware");
+const {
+    predict,
+    getPredictHistories,
+} = require("../../controller/predicts.controller");
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/predict", upload.single('image'), predict)
-router.get("/predict/histories")
+router.post("/predict", upload.single("image"), predict);
+router.get("/predict/histories", getPredictHistories);
 
-module.exports = router
+module.exports = router;

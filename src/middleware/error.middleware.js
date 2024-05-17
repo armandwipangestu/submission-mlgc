@@ -1,42 +1,44 @@
-const { MulterError } = require("multer")
-const TensorException = require("../exceptions/tensor.exceptions")
+const { MulterError } = require("multer");
+const TensorException = require("../exceptions/tensor.exceptions");
 
 const error = async (err, req, res, next) => {
     if (err instanceof TensorException) {
         res.status(err.status).json({
             status: "fail",
-            message: err.message
-        })
+            message: err.message,
+        });
 
-        return
+        return;
     }
 
-    if ((err instanceof MulterError) && err.message === "File too large") {
+    if (err instanceof MulterError && err.message === "File too large") {
         res.status(413).json({
             status: "fail",
-            message: "Payload content length greater than maximum allowed: 1000000"
-        })
+            message:
+                "Payload content length greater than maximum allowed: 1000000",
+            status: "fail",
+        });
 
-        return
+        return;
     }
 
-    if ((err instanceof MulterError) && err.message === "Unexpected field") {
+    if (err instanceof MulterError && err.message === "Unexpected field") {
         res.status(400).json({
             status: "fail",
-            message: "Property image tidak ada."
-        })
+            message: "Property image tidak ada.",
+        });
 
-        return
+        return;
     }
 
     console.log(`Error: ${err}`);
 
     res.status(500).json({
         status: "fail",
-        message: "Oops! Something went wrong!"
-    })
+        message: "Oops! Something went wrong!",
+    });
 
-    return
-}
+    return;
+};
 
-module.exports = error
+module.exports = error;
