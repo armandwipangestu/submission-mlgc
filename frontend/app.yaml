@@ -1,0 +1,24 @@
+runtime: nodejs20
+
+# Define the entrypoint
+entrypoint: npm start
+
+# Configure the service
+handlers:
+  - url: /
+    static_files: index.html
+    upload: index.html
+
+  - url: /src/styles
+    static_dir: src/styles
+
+  - url: /src/scripts
+    static_dir: src/scripts
+
+  - url: /src/images
+    static_dir: src/images
+
+  # Catch all to serve the main index.html
+  - url: /.*
+    static_files: index.html
+    upload: index.html
