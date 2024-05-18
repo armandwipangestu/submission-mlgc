@@ -30,7 +30,7 @@ const predict = async (req, res, next) => {
             const id = uuidv4();
             data = {
                 id,
-                result: "Not Cancer",
+                result: "Non-cancer",
                 suggestion: "Tidak usah khawatir, karena ini bukan cancer!",
                 createdAt,
             };
